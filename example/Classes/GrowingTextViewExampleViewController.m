@@ -131,6 +131,12 @@
 	// get a rect for the textView frame
 	CGRect containerFrame = containerView.frame;
     containerFrame.origin.y = self.view.bounds.size.height - (keyboardBounds.size.height + containerFrame.size.height);
+	
+	// fix a bug for the Chinese keyboard in iOS 5.
+	CGRect initialContainerFrame = containerView.frame;
+	initialContainerFrame.origin.y = self.view.bounds.size.height - containerFrame.size.height;
+	containerView.frame = initialContainerFrame;
+	
 	// animations settings
 	[UIView beginAnimations:nil context:NULL];
 	[UIView setAnimationBeginsFromCurrentState:YES];
